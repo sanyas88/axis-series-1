@@ -720,7 +720,9 @@ a { color: inherit; text-decoration: none; }
   background: transparent;
   outline: none;
   cursor: grab;
+  transition: opacity 0.22s var(--ease);
 }
+.config-model.is-swapping { opacity: 0.25; }
 .config-model:active { cursor: grabbing; }
 .config-model:focus { outline: none; }
 .config-model:focus-visible { outline: 2px solid var(--accent-line); outline-offset: 4px; }

@@ -101,9 +101,9 @@ if (engDial && !prefersReducedMotion) {
 const configModel = document.getElementById("configModel");
 if (configModel) {
   const CASE = {
-    grafit: { label: "Grafit", color: [0.1, 0.11, 0.13], metallic: 1, rough: 0.5, surcharge: false },
-    srebro: { label: "Srebro", color: [0.82, 0.84, 0.87], metallic: 1, rough: 0.32, surcharge: false },
-    titanijum: { label: "Titanijum", color: [0.55, 0.54, 0.51], metallic: 1, rough: 0.46, surcharge: true },
+    grafit: { label: "Grafit", color: [0.06, 0.07, 0.08], metallic: 1, rough: 0.6, surcharge: false },
+    srebro: { label: "Srebro", color: [1, 1, 1], metallic: 1, rough: 0.16, surcharge: false },
+    titanijum: { label: "Titanijum", color: [0.62, 0.61, 0.57], metallic: 1, rough: 0.4, surcharge: true },
   };
   const STRAP = {
     sport: { label: "Sportska silikonska", color: [0.12, 0.13, 0.14], metallic: 0, rough: 0.9, surcharge: false },
@@ -132,6 +132,18 @@ if (configModel) {
     paint(["Strap1", "Strap2"], STRAP[selected.strap]);
   };
 
+  const fadeApply = () => {
+    if (prefersReducedMotion || !modelReady) {
+      applyMaterials();
+      return;
+    }
+    configModel.classList.add("is-swapping");
+    setTimeout(() => {
+      applyMaterials();
+      configModel.classList.remove("is-swapping");
+    }, 170);
+  };
+
   const updateSummary = () => {
     combo.textContent = `${CASE[selected.case].label} · ${STRAP[selected.strap].label}`;
     const hasSurcharge = CASE[selected.case].surcharge || STRAP[selected.strap].surcharge;
@@ -150,7 +162,7 @@ if (configModel) {
           b.classList.toggle("is-active", active);
           b.setAttribute("aria-pressed", String(active));
         });
-        applyMaterials();
+        fadeApply();
         updateSummary();
       });
     });
