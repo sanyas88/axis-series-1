@@ -6,6 +6,7 @@ desktop.ini
 
 # Node (za slučaj da se kasnije doda alat)
 node_modules/
+package-lock.json
 npm-debug.log*
 .cursor/
 
