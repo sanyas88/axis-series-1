@@ -32,8 +32,11 @@ npx http-server -p 8123 -c-1 .
 
 Zatim otvori `http://127.0.0.1:8123/`.
 
+## Live
+**https://playful-parfait-2fc0e5.netlify.app/**
+
 ## Status
-U izradi (sekcija po sekcija): Hero i Highlights završeni.
+Završeno — sve sekcije, responsive, SEO meta, Netlify deploy.
 
 ## Licenca
 Kod je slobodan za korišćenje u edukativne/portfolio svrhe. 3D model podleže

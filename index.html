@@ -4,19 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AXIS · Series 1 — Every heartbeat, quietly counted.</title>
-  <meta name="description" content="AXIS Series 1 — minimalistički pametni sat. Jedan ekran, pet senzora, šest dana baterije. Meri ono što je bitno." />
+  <meta name="description" id="metaDesc" content="AXIS Series 1 — minimalistički pametni sat. Jedan ekran, pet senzora, šest dana baterije. Meri ono što je bitno." />
   <meta name="theme-color" content="#15171A" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="AXIS · Series 1 — Every heartbeat, quietly counted." />
-  <meta property="og:description" content="Minimalistički pametni sat sa pravim 3D prikazom. Šest dana baterije, precizni senzori, 5 ATM vodootpornost." />
-  <meta property="og:locale" content="sr_RS" />
+  <meta property="og:description" id="metaOgDesc" content="Minimalistički pametni sat sa pravim 3D prikazom. Šest dana baterije, precizni senzori, 5 ATM vodootpornost." />
+  <meta property="og:locale" id="metaOgLocale" content="sr_RS" />
+  <meta property="og:url" content="https://playful-parfait-2fc0e5.netlify.app/" />
+  <link rel="canonical" href="https://playful-parfait-2fc0e5.netlify.app/" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="AXIS · Series 1 — Every heartbeat, quietly counted." />
-  <meta name="twitter:description" content="Minimalistički pametni sat sa pravim 3D prikazom. Founders Edition — 189€." />
+  <meta name="twitter:description" id="metaTwDesc" content="Minimalistički pametni sat sa pravim 3D prikazom. Founders Edition — 189€." />
+
+  <script>
+    (function () {
+      var l = localStorage.getItem("axis-lang");
+      if (l === "en" || l === "sr") document.documentElement.lang = l;
+    })();
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,7 +44,7 @@
       "price": "189",
       "priceCurrency": "EUR",
       "availability": "https://schema.org/PreOrder",
-      "url": "#cta"
+      "url": "https://playful-parfait-2fc0e5.netlify.app/#cta"
     }
   }
   </script>
@@ -46,19 +55,36 @@
 <body>
   <header class="site-header" id="siteHeader">
     <div class="shell header-inner">
-      <a class="logo" href="#hero" aria-label="AXIS početna">
+      <a class="logo" href="#hero" data-i18n-attr="aria-label:nav.home" aria-label="AXIS početna">
         <span class="logo-mark" aria-hidden="true"></span>
         AXIS
       </a>
-      <nav class="nav" aria-label="Glavna navigacija">
-        <a href="#specifikacije">Specifikacije</a>
-        <a href="#engineering">Engineering</a>
-        <a href="#konfigurator">Konfigurator</a>
-        <a href="#odrzivost">Održivost</a>
-        <a href="#cta">Cenovnik</a>
-        <a href="#cta">Kontakt</a>
+      <nav class="nav" id="siteNav" data-i18n-attr="aria-label:nav.label" aria-label="Glavna navigacija">
+        <a href="#specifikacije" data-i18n="nav.specs">Specifikacije</a>
+        <a href="#engineering" data-i18n="nav.eng">Engineering</a>
+        <a href="#konfigurator" data-i18n="nav.config">Konfigurator</a>
+        <a href="#odrzivost" data-i18n="nav.sustain">Održivost</a>
+        <a href="#cta" data-i18n="nav.pricing">Cenovnik</a>
+        <a href="#cta" data-i18n="nav.contact">Kontakt</a>
+        <a href="#cta" class="btn btn-primary nav-mobile-cta" data-i18n="nav.cta">Predporuči</a>
       </nav>
-      <a href="#cta" class="btn btn-ghost btn-sm header-cta">Predporuči</a>
+      <div class="header-actions">
+        <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Izbor jezika">
+          <button type="button" class="lang-btn is-active" data-lang="sr" aria-pressed="true">SR</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a href="#cta" class="btn btn-ghost btn-sm header-cta" data-i18n="nav.cta">Predporuči</a>
+        <button
+          type="button"
+          class="nav-toggle"
+          id="navToggle"
+          aria-expanded="false"
+          aria-controls="siteNav"
+          data-i18n-attr="aria-label:nav.menu.open">
+          <span class="sr-only" data-i18n="nav.menu.open">Otvori meni</span>
+          <span class="nav-toggle-icon" aria-hidden="true"></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -68,9 +94,9 @@
       <div class="hero-grain" aria-hidden="true"></div>
 
       <div class="shell hero-inner">
-        <p class="eyebrow reveal" data-reveal>AXIS · Series 1 · 2026</p>
+        <p class="eyebrow reveal" data-reveal data-i18n="hero.eyebrow">AXIS · Series 1 · 2026</p>
 
-        <h1 class="hero-title reveal" data-reveal>
+        <h1 class="hero-title reveal" data-reveal data-i18n-html="hero.title">
           Every heartbeat,<br />
           <span class="hero-title-accent">quietly counted.</span>
         </h1>
@@ -80,6 +106,7 @@
           <model-viewer
             class="hero-model"
             src="models/smartwatch.glb"
+            data-i18n-attr="alt:hero.modelAlt"
             alt="AXIS Series 1 pametni sat — 3D model, rotacija mišem ili dodirom"
             camera-controls
             auto-rotate
@@ -98,25 +125,25 @@
             touch-action="pan-y">
             <div class="model-poster" slot="poster">
               <span class="model-poster-word">AXIS</span>
-              <span class="model-poster-hint">Učitavanje 3D modela…</span>
+              <span class="model-poster-hint" data-i18n="hero.loading">Učitavanje 3D modela…</span>
             </div>
             <div class="model-progress" slot="progress-bar"></div>
           </model-viewer>
-          <span class="hero-drag-hint" aria-hidden="true">Prevuci za rotaciju</span>
+          <span class="hero-drag-hint" aria-hidden="true" data-i18n="hero.drag">Prevuci za rotaciju</span>
         </div>
 
-        <p class="hero-desc reveal" data-reveal>
+        <p class="hero-desc reveal" data-reveal data-i18n="hero.desc">
           Jedan ekran. Pet senzora. Nula nepotrebnog. AXIS meri ono što je bitno
           i ostavlja te na miru sa svim ostalim.
         </p>
 
         <div class="hero-actions reveal" data-reveal>
-          <a href="#cta" class="btn btn-primary">Predporuči — Founders Edition</a>
-          <a href="#specifikacije" class="btn btn-ghost">Pogledaj specifikacije</a>
+          <a href="#cta" class="btn btn-primary" data-i18n="hero.cta1">Predporuči — Founders Edition</a>
+          <a href="#specifikacije" class="btn btn-ghost" data-i18n="hero.cta2">Pogledaj specifikacije</a>
         </div>
       </div>
 
-      <a href="#highlights" class="hero-scroll-cue" aria-label="Skroluj dalje">
+      <a href="#highlights" class="hero-scroll-cue" data-i18n-attr="aria-label:hero.scroll" aria-label="Skroluj dalje">
         <span class="hero-scroll-line" aria-hidden="true"></span>
       </a>
     </section>
@@ -313,6 +340,7 @@
               id="configModel"
               class="config-model"
               src="models/smartwatch.glb"
+              data-i18n-attr="alt:config.modelAlt"
               alt="AXIS Series 1 — konfigurisani prikaz sata"
               camera-controls
               disable-zoom
@@ -535,6 +563,7 @@
                   id="newsletterEmail"
                   name="email"
                   class="cta-input"
+                  data-i18n-attr="placeholder:cta.news.placeholder"
                   placeholder="tvoj@email.com"
                   autocomplete="email"
                   required />
@@ -561,7 +590,7 @@
 
   <footer class="site-footer">
     <div class="shell footer-inner">
-      <a class="footer-logo" href="#hero" aria-label="AXIS početna">
+      <a class="footer-logo" href="#hero" data-i18n-attr="aria-label:nav.home" aria-label="AXIS početna">
         <span class="logo-mark" aria-hidden="true"></span>
         AXIS
       </a>
@@ -570,7 +599,7 @@
         <p class="footer-copy" data-i18n="footer.copy">
           © 2026 AXIS. Vežbeni projekat, nije stvaran proizvod.
         </p>
-        <p class="footer-attrib" data-i18n="footer.attrib">
+        <p class="footer-attrib" data-i18n-html="footer.attrib">
           3D model:
           <a href="https://skfb.ly/oWWMz" rel="noopener noreferrer" target="_blank">"Smartwatch"</a>
           by Hasnain, licenciran pod
@@ -580,6 +609,7 @@
     </div>
   </footer>
 
+  <script src="i18n.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

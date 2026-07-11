@@ -12,6 +12,14 @@ window.addEventListener("scroll", onScroll, { passive: true });
 
 /* Scroll-reveal (ponovo se koristi za sve sekcije) */
 const revealEls = document.querySelectorAll("[data-reveal]");
+const isMobile = window.matchMedia("(max-width: 720px)").matches;
+
+const revealInView = (el) => {
+  const rect = el.getBoundingClientRect();
+  const vh = window.innerHeight || document.documentElement.clientHeight;
+  return rect.top < vh * 0.92 && rect.bottom > vh * 0.08;
+};
+
 if (prefersReducedMotion) {
   revealEls.forEach((el) => el.classList.add("is-in"));
 } else {
@@ -19,14 +27,76 @@ if (prefersReducedMotion) {
     (entries, obs) => {
       entries.forEach((entry, i) => {
         if (!entry.isIntersecting) return;
-        // Blagi stagger unutar iste sekcije
         setTimeout(() => entry.target.classList.add("is-in"), i * 90);
         obs.unobserve(entry.target);
       });
     },
-    { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
+    {
+      threshold: isMobile ? 0.05 : 0.18,
+      rootMargin: isMobile ? "0px 0px 8% 0px" : "0px 0px -8% 0px",
+    }
   );
-  revealEls.forEach((el) => io.observe(el));
+  revealEls.forEach((el) => {
+    if (revealInView(el)) el.classList.add("is-in");
+    else io.observe(el);
+  });
+
+  /* Na mobilnom: otkrij sve kartice u gridu kad grid uđe u viewport */
+  if (isMobile) {
+    document.querySelectorAll(".hl-grid, .spec-bento, .test-grid").forEach((grid) => {
+      const items = grid.querySelectorAll("[data-reveal]");
+      const gridIo = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            items.forEach((item, i) => {
+              setTimeout(() => item.classList.add("is-in"), i * 70);
+            });
+            obs.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.08, rootMargin: "0px 0px 12% 0px" }
+      );
+      gridIo.observe(grid);
+    });
+  }
+}
+
+/* Mobilni meni */
+const navToggle = document.getElementById("navToggle");
+const siteNav = document.getElementById("siteNav");
+
+const setMenuOpen = (open) => {
+  if (!header || !navToggle || !siteNav) return;
+  header.classList.toggle("is-menu-open", open);
+  navToggle.setAttribute("aria-expanded", String(open));
+  document.body.classList.toggle("nav-open", open);
+  const labelKey = open ? "nav.menu.close" : "nav.menu.open";
+  navToggle.setAttribute("aria-label", t(labelKey));
+  const sr = navToggle.querySelector(".sr-only");
+  if (sr) sr.textContent = t(labelKey);
+};
+
+if (navToggle && siteNav) {
+  navToggle.addEventListener("click", () => {
+    setMenuOpen(!header.classList.contains("is-menu-open"));
+  });
+
+  siteNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenuOpen(false));
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && header.classList.contains("is-menu-open")) setMenuOpen(false);
+  });
+
+  window.addEventListener(
+    "resize",
+    () => {
+      if (window.innerWidth > 720 && header.classList.contains("is-menu-open")) setMenuOpen(false);
+    },
+    { passive: true }
+  );
 }
 
 /* Count-up: veliki brojevi se "izbroje" pri ulasku u viewport */
@@ -101,14 +171,14 @@ if (engDial && !prefersReducedMotion) {
 const configModel = document.getElementById("configModel");
 if (configModel) {
   const CASE = {
-    grafit: { label: "Grafit", color: [0.06, 0.07, 0.08], metallic: 1, rough: 0.6, surcharge: false },
-    srebro: { label: "Srebro", color: [1, 1, 1], metallic: 1, rough: 0.16, surcharge: false },
-    titanijum: { label: "Titanijum", color: [0.62, 0.61, 0.57], metallic: 1, rough: 0.4, surcharge: true },
+    grafit: { labelKey: "config.case.grafit", color: [0.06, 0.07, 0.08], metallic: 1, rough: 0.6, surcharge: false },
+    srebro: { labelKey: "config.case.srebro", color: [1, 1, 1], metallic: 1, rough: 0.16, surcharge: false },
+    titanijum: { labelKey: "config.case.titanijum", color: [0.62, 0.61, 0.57], metallic: 1, rough: 0.4, surcharge: true },
   };
   const STRAP = {
-    sport: { label: "Sportska silikonska", color: [0.12, 0.13, 0.14], metallic: 0, rough: 0.9, surcharge: false },
-    kozna: { label: "Kožna, tamnosmeđa", color: [0.3, 0.17, 0.09], metallic: 0, rough: 0.65, surcharge: true },
-    metal: { label: "Metalna, milanska", color: [0.78, 0.79, 0.82], metallic: 1, rough: 0.28, surcharge: true },
+    sport: { labelKey: "config.strap.sport", color: [0.12, 0.13, 0.14], metallic: 0, rough: 0.9, surcharge: false },
+    kozna: { labelKey: "config.strap.kozna", color: [0.3, 0.17, 0.09], metallic: 0, rough: 0.65, surcharge: true },
+    metal: { labelKey: "config.strap.metal", color: [0.78, 0.79, 0.82], metallic: 1, rough: 0.28, surcharge: true },
   };
 
   const combo = document.getElementById("configCombo");
@@ -145,10 +215,14 @@ if (configModel) {
   };
 
   const updateSummary = () => {
-    combo.textContent = `${CASE[selected.case].label} · ${STRAP[selected.strap].label}`;
+    const lang = getLang();
+    const caseLabel = t(CASE[selected.case].labelKey, lang);
+    const strapLabel = t(STRAP[selected.strap].labelKey, lang);
+    combo.textContent = `${caseLabel} · ${strapLabel}`;
     const hasSurcharge = CASE[selected.case].surcharge || STRAP[selected.strap].surcharge;
+    const surchargeNote = t("config.surcharge", lang);
     price.innerHTML = hasSurcharge
-      ? '189€<span class="config-price-note">+ doplata</span>'
+      ? `189€<span class="config-price-note">${surchargeNote}</span>`
       : "189€";
   };
 
@@ -173,6 +247,7 @@ if (configModel) {
     applyMaterials();
   });
   updateSummary();
+  document.addEventListener("axis:langchange", updateSummary);
 }
 
 /* Newsletter forma sa honeypot zaštitom */
