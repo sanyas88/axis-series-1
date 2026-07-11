@@ -175,6 +175,26 @@ if (configModel) {
   updateSummary();
 }
 
+/* Newsletter forma sa honeypot zaštitom */
+const newsletterForm = document.getElementById("newsletterForm");
+const newsletterSuccess = document.getElementById("newsletterSuccess");
+if (newsletterForm) {
+  newsletterForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const honeypot = newsletterForm.querySelector('[name="website"]');
+    if (honeypot && honeypot.value.trim()) return;
+
+    const email = newsletterForm.querySelector('[name="email"]');
+    if (!email || !email.value.trim() || !email.checkValidity()) {
+      email?.focus();
+      return;
+    }
+
+    newsletterForm.reset();
+    if (newsletterSuccess) newsletterSuccess.hidden = false;
+  });
+}
+
 /* Hero model: ugasi auto-rotate čim korisnik krene da rotira */
 const heroModel = document.querySelector(".hero-model");
 if (heroModel) {

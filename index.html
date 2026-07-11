@@ -456,6 +456,77 @@
         </div>
       </div>
     </section>
+
+    <section class="section cta" id="cta">
+      <div class="shell">
+        <div class="cta-panel reveal" data-reveal>
+          <div class="cta-glow" aria-hidden="true"></div>
+
+          <div class="cta-grid">
+            <div class="cta-offer">
+              <p class="eyebrow" data-i18n="cta.offer.eyebrow">Founders Edition</p>
+              <h2 class="cta-title" data-i18n="cta.offer.title">
+                Founders Edition — prvih 500 komada
+              </h2>
+              <p class="cta-desc" data-i18n="cta.offer.desc">
+                Predporudžbina otvara ograničen broj jedinica po lansirnoj ceni. Isporuka za
+                6 nedelja.
+              </p>
+
+              <div class="cta-price-row">
+                <span class="cta-price">189€</span>
+                <span class="cta-price-old" data-i18n="cta.offer.old">229€ posle lansiranja</span>
+              </div>
+
+              <ul class="cta-includes">
+                <li data-i18n="cta.offer.i1">Sat</li>
+                <li data-i18n="cta.offer.i2">Magnetni punjač</li>
+                <li data-i18n="cta.offer.i3">Sportska traka</li>
+                <li data-i18n="cta.offer.i4">2 godine garancije</li>
+              </ul>
+
+              <a href="#cta" class="btn btn-primary cta-order" data-i18n="cta.offer.btn">
+                Predporuči — Founders Edition
+              </a>
+            </div>
+
+            <div class="cta-newsletter">
+              <h3 class="cta-news-title" data-i18n="cta.news.title">
+                Budi prvi kad AXIS krene u prodaju.
+              </h3>
+              <p class="cta-news-desc" data-i18n="cta.news.desc">
+                Jedan email mesečno. Nema spama, nema deljenja podataka trećim licima.
+              </p>
+
+              <form class="cta-form" id="newsletterForm" novalidate>
+                <label class="sr-only" for="newsletterEmail" data-i18n="cta.news.label">Email adresa</label>
+                <input
+                  type="email"
+                  id="newsletterEmail"
+                  name="email"
+                  class="cta-input"
+                  placeholder="tvoj@email.com"
+                  autocomplete="email"
+                  required />
+                <button type="submit" class="btn btn-primary" data-i18n="cta.news.btn">Prijavi se</button>
+                <!-- Honeypot: skriveno polje za botove -->
+                <input
+                  type="text"
+                  name="website"
+                  class="hp-field"
+                  tabindex="-1"
+                  autocomplete="off"
+                  aria-hidden="true" />
+              </form>
+
+              <p class="cta-success" id="newsletterSuccess" hidden role="status" data-i18n="cta.news.success">
+                Hvala — javljamo se čim Founders Edition krene u prodaju.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script src="script.js"></script>
