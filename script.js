@@ -97,6 +97,72 @@ if (engDial && !prefersReducedMotion) {
   updateParallax();
 }
 
+/* Konfigurator: stvarni recolor materijala 3D modela */
+const configModel = document.getElementById("configModel");
+if (configModel) {
+  const CASE = {
+    grafit: { label: "Grafit", color: [0.1, 0.11, 0.13], metallic: 1, rough: 0.5, surcharge: false },
+    srebro: { label: "Srebro", color: [0.82, 0.84, 0.87], metallic: 1, rough: 0.32, surcharge: false },
+    titanijum: { label: "Titanijum", color: [0.55, 0.54, 0.51], metallic: 1, rough: 0.46, surcharge: true },
+  };
+  const STRAP = {
+    sport: { label: "Sportska silikonska", color: [0.12, 0.13, 0.14], metallic: 0, rough: 0.9, surcharge: false },
+    kozna: { label: "Kožna, tamnosmeđa", color: [0.3, 0.17, 0.09], metallic: 0, rough: 0.65, surcharge: true },
+    metal: { label: "Metalna, milanska", color: [0.78, 0.79, 0.82], metallic: 1, rough: 0.28, surcharge: true },
+  };
+
+  const combo = document.getElementById("configCombo");
+  const price = document.getElementById("configPrice");
+  const selected = { case: "grafit", strap: "sport" };
+  let modelReady = false;
+
+  const paint = (names, opt) => {
+    names.forEach((n) => {
+      const mat = configModel.model && configModel.model.materials.find((x) => x.name === n);
+      if (!mat) return;
+      mat.pbrMetallicRoughness.setBaseColorFactor([...opt.color, 1]);
+      mat.pbrMetallicRoughness.setMetallicFactor(opt.metallic);
+      mat.pbrMetallicRoughness.setRoughnessFactor(opt.rough);
+    });
+  };
+
+  const applyMaterials = () => {
+    if (!modelReady) return;
+    paint(["Body", "Crown"], CASE[selected.case]);
+    paint(["Strap1", "Strap2"], STRAP[selected.strap]);
+  };
+
+  const updateSummary = () => {
+    combo.textContent = `${CASE[selected.case].label} · ${STRAP[selected.strap].label}`;
+    const hasSurcharge = CASE[selected.case].surcharge || STRAP[selected.strap].surcharge;
+    price.innerHTML = hasSurcharge
+      ? '189€<span class="config-price-note">+ doplata</span>'
+      : "189€";
+  };
+
+  document.querySelectorAll(".config-options").forEach((groupEl) => {
+    const group = groupEl.dataset.group;
+    groupEl.querySelectorAll(".config-swatch").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        selected[group] = btn.dataset.key;
+        groupEl.querySelectorAll(".config-swatch").forEach((b) => {
+          const active = b === btn;
+          b.classList.toggle("is-active", active);
+          b.setAttribute("aria-pressed", String(active));
+        });
+        applyMaterials();
+        updateSummary();
+      });
+    });
+  });
+
+  configModel.addEventListener("load", () => {
+    modelReady = true;
+    applyMaterials();
+  });
+  updateSummary();
+}
+
 /* Hero model: ugasi auto-rotate čim korisnik krene da rotira */
 const heroModel = document.querySelector(".hero-model");
 if (heroModel) {

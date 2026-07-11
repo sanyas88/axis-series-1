@@ -265,6 +265,99 @@
         </div>
       </div>
     </section>
+
+    <section class="section configurator" id="konfigurator">
+      <div class="shell">
+        <header class="section-head">
+          <p class="eyebrow reveal" data-reveal data-i18n="config.eyebrow">Konfigurator</p>
+          <h2 class="section-title reveal" data-reveal data-i18n="config.title">
+            Podesi svoj AXIS.
+          </h2>
+        </header>
+
+        <div class="config-grid">
+          <div class="config-stage reveal" data-reveal>
+            <div class="config-glow" aria-hidden="true"></div>
+            <model-viewer
+              id="configModel"
+              class="config-model"
+              src="models/smartwatch.glb"
+              alt="AXIS Series 1 — konfigurisani prikaz sata"
+              camera-controls
+              disable-zoom
+              auto-rotate
+              auto-rotate-delay="0"
+              rotation-per-second="12deg"
+              interaction-prompt="none"
+              exposure="1.8"
+              environment-image="neutral"
+              shadow-intensity="0.9"
+              shadow-softness="1"
+              camera-orbit="0deg 75deg 4.2m"
+              loading="lazy"
+              touch-action="pan-y">
+              <div class="model-poster" slot="poster">
+                <span class="model-poster-word">AXIS</span>
+                <span class="model-poster-hint" data-i18n="config.loading">Učitavanje 3D modela…</span>
+              </div>
+            </model-viewer>
+          </div>
+
+          <div class="config-panel reveal" data-reveal>
+            <div class="config-group">
+              <span class="config-group-label" data-i18n="config.case.label">Kućište</span>
+              <div class="config-options" data-group="case">
+                <button type="button" class="config-swatch is-active" data-key="grafit" aria-pressed="true">
+                  <span class="config-dot" style="--sw:#1b1d20"></span>
+                  <span class="config-swatch-name" data-i18n="config.case.grafit">Grafit</span>
+                </button>
+                <button type="button" class="config-swatch" data-key="srebro" aria-pressed="false">
+                  <span class="config-dot" style="--sw:#d4d7dc"></span>
+                  <span class="config-swatch-name" data-i18n="config.case.srebro">Srebro</span>
+                </button>
+                <button type="button" class="config-swatch" data-key="titanijum" aria-pressed="false">
+                  <span class="config-dot" style="--sw:#8f8a83"></span>
+                  <span class="config-swatch-name" data-i18n="config.case.titanijum">Titanijum</span>
+                  <span class="config-tag" data-i18n="config.surcharge">+ doplata</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="config-group">
+              <span class="config-group-label" data-i18n="config.strap.label">Traka</span>
+              <div class="config-options" data-group="strap">
+                <button type="button" class="config-swatch is-active" data-key="sport" aria-pressed="true">
+                  <span class="config-dot" style="--sw:#1d1f22"></span>
+                  <span class="config-swatch-name" data-i18n="config.strap.sport">Sportska silikonska</span>
+                </button>
+                <button type="button" class="config-swatch" data-key="kozna" aria-pressed="false">
+                  <span class="config-dot" style="--sw:#4d2c17"></span>
+                  <span class="config-swatch-name" data-i18n="config.strap.kozna">Kožna, tamnosmeđa</span>
+                  <span class="config-tag" data-i18n="config.surcharge">+ doplata</span>
+                </button>
+                <button type="button" class="config-swatch" data-key="metal" aria-pressed="false">
+                  <span class="config-dot" style="--sw:#c7cace"></span>
+                  <span class="config-swatch-name" data-i18n="config.strap.metal">Metalna, milanska</span>
+                  <span class="config-tag" data-i18n="config.surcharge">+ doplata</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="config-summary">
+              <div class="config-summary-row">
+                <span class="config-summary-label" data-i18n="config.combo.label">Izabrana kombinacija</span>
+                <span class="config-combo" id="configCombo">Grafit · Sportska silikonska</span>
+              </div>
+              <div class="config-summary-row">
+                <span class="config-summary-label" data-i18n="config.price.label">Founders cena</span>
+                <span class="config-price" id="configPrice">189€</span>
+              </div>
+              <a href="#cta" class="btn btn-primary config-cta" data-i18n="config.cta">Predporuči ovu kombinaciju</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script src="script.js"></script>
