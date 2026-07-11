@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AXIS · Series 1 — Every heartbeat, quietly counted.</title>
+  <meta name="description" content="AXIS Series 1 — minimalistički pametni sat. Jedan ekran, pet senzora, šest dana baterije. Meri ono što je bitno." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer-umd.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="shell header-inner">
+      <a class="logo" href="#hero" aria-label="AXIS početna">
+        <span class="logo-mark" aria-hidden="true"></span>
+        AXIS
+      </a>
+      <nav class="nav" aria-label="Glavna navigacija">
+        <a href="#specifikacije">Specifikacije</a>
+        <a href="#engineering">Engineering</a>
+        <a href="#konfigurator">Konfigurator</a>
+        <a href="#cta">Cenovnik</a>
+        <a href="#cta">Kontakt</a>
+      </nav>
+      <a href="#cta" class="btn btn-ghost btn-sm header-cta">Predporuči</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grain" aria-hidden="true"></div>
+
+      <div class="shell hero-inner">
+        <p class="eyebrow reveal" data-reveal>AXIS · Series 1 · 2026</p>
+
+        <h1 class="hero-title reveal" data-reveal>
+          Every heartbeat,<br />
+          <span class="hero-title-accent">quietly counted.</span>
+        </h1>
+
+        <div class="hero-stage reveal" data-reveal>
+          <span class="hero-ghost-word" aria-hidden="true">AXIS</span>
+          <model-viewer
+            class="hero-model"
+            src="models/smartwatch.glb"
+            alt="AXIS Series 1 pametni sat — 3D model, rotacija mišem ili dodirom"
+            camera-controls
+            auto-rotate
+            auto-rotate-delay="0"
+            rotation-per-second="16deg"
+            interaction-prompt="none"
+            disable-zoom
+            shadow-intensity="0.9"
+            shadow-softness="1"
+            exposure="1.8"
+            environment-image="neutral"
+            camera-orbit="0deg 78deg 4.2m"
+            min-camera-orbit="auto 40deg auto"
+            max-camera-orbit="auto 120deg auto"
+            disable-tap
+            touch-action="pan-y">
+            <div class="model-poster" slot="poster">
+              <span class="model-poster-word">AXIS</span>
+              <span class="model-poster-hint">Učitavanje 3D modela…</span>
+            </div>
+            <div class="model-progress" slot="progress-bar"></div>
+          </model-viewer>
+          <span class="hero-drag-hint" aria-hidden="true">Prevuci za rotaciju</span>
+        </div>
+
+        <p class="hero-desc reveal" data-reveal>
+          Jedan ekran. Pet senzora. Nula nepotrebnog. AXIS meri ono što je bitno
+          i ostavlja te na miru sa svim ostalim.
+        </p>
+
+        <div class="hero-actions reveal" data-reveal>
+          <a href="#cta" class="btn btn-primary">Predporuči — Founders Edition</a>
+          <a href="#specifikacije" class="btn btn-ghost">Pogledaj specifikacije</a>
+        </div>
+      </div>
+
+      <a href="#highlights" class="hero-scroll-cue" aria-label="Skroluj dalje">
+        <span class="hero-scroll-line" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <section class="section highlights" id="highlights">
+      <div class="shell">
+        <header class="section-head">
+          <p class="eyebrow reveal" data-reveal data-i18n="highlights.eyebrow">Suština</p>
+          <h2 class="section-title reveal" data-reveal data-i18n="highlights.title">
+            Tri stvari, urađene kako treba.
+          </h2>
+        </header>
+
+        <div class="hl-grid">
+          <article class="hl-card reveal" data-reveal>
+            <span class="hl-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="16" height="10" rx="2.5" />
+                <path d="M22 10v4" />
+                <path d="M6 10v4" />
+              </svg>
+            </span>
+            <p class="hl-stat">
+              <span class="hl-num">6</span>
+              <span class="hl-unit" data-i18n="highlights.battery.unit">dana</span>
+            </p>
+            <h3 class="hl-card-title" data-i18n="highlights.battery.title">Šest dana bez punjača</h3>
+            <p class="hl-card-desc" data-i18n="highlights.battery.desc">
+              Tipična upotreba na jednom punjenju. Trideset šest sati čak i sa aktivnim GPS-om.
+            </p>
+          </article>
+
+          <article class="hl-card reveal" data-reveal>
+            <span class="hl-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12h4l2 6 4-14 2.5 8H22" />
+              </svg>
+            </span>
+            <p class="hl-stat">
+              <span class="hl-num">5</span>
+              <span class="hl-unit" data-i18n="highlights.sensors.unit">senzora</span>
+            </p>
+            <h3 class="hl-card-title" data-i18n="highlights.sensors.title">Precizni senzori</h3>
+            <p class="hl-card-desc" data-i18n="highlights.sensors.desc">
+              Puls, kiseonik u krvi, akcelerometar, žiroskop i ambijentalno svetlo — samo ono što zaista koristiš.
+            </p>
+          </article>
+
+          <article class="hl-card reveal" data-reveal>
+            <span class="hl-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z" />
+              </svg>
+            </span>
+            <p class="hl-stat">
+              <span class="hl-num">5</span>
+              <span class="hl-unit">ATM</span>
+            </p>
+            <h3 class="hl-card-title" data-i18n="highlights.water.title">5 ATM vodootpornost</h3>
+            <p class="hl-card-desc" data-i18n="highlights.water.desc">
+              Plivanje slobodno, tuširanje se podrazumeva. Samo ronjenje ostaje van dometa.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

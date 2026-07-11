@@ -1,0 +1,13 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+
+# Node (za slučaj da se kasnije doda alat)
+node_modules/
+npm-debug.log*
+.cursor/
+
+# Duplirani izvorni GLB (radna kopija je models/smartwatch.glb)
+files/*.glb
