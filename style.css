@@ -492,6 +492,135 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ============================================================
+   SPECIFIKACIJE (bento)
+   ============================================================ */
+.specs { border-top: 1px solid var(--hairline); }
+
+.spec-bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 1.6vw, 20px);
+}
+
+.spec-tile {
+  position: relative;
+  padding: clamp(24px, 2.6vw, 36px);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012));
+  border: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+.spec-tile:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-line);
+}
+
+.spec-tile-label {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.spec-tile-value {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: clamp(28px, 4vw, 48px);
+}
+.spec-num {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.8rem, 4.6vw, 3.8rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+.spec-unit {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+.spec-tile-note {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Senzori pločica — viša, sa listom */
+.spec-tile--sensors { grid-row: span 2; }
+.spec-tile--sensors .spec-tile-value {
+  margin-top: 0;
+  padding-top: clamp(20px, 3vw, 32px);
+}
+.spec-sensor-list {
+  list-style: none;
+  margin-top: auto;
+  padding-top: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.spec-sensor-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  color: var(--text);
+  font-size: 0.96rem;
+}
+.spec-sensor-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* Tabela specifikacija — hairline redovi */
+.spec-table {
+  grid-column: 1 / 3;
+  align-self: start;
+  padding: clamp(8px, 1.5vw, 20px) clamp(20px, 2.6vw, 36px);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.008));
+  border: 1px solid var(--hairline);
+}
+.spec-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: clamp(14px, 1.6vw, 18px) 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.spec-row:last-child { border-bottom: none; }
+.spec-row-term {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.spec-row-val {
+  text-align: right;
+  color: var(--text);
+  font-size: 0.98rem;
+}
+
+/* ============================================================
    REVEAL (entrance)
    ============================================================ */
 .reveal {
@@ -516,6 +645,16 @@ a { color: inherit; text-decoration: none; }
    ============================================================ */
 @media (max-width: 900px) {
   .hl-grid { grid-template-columns: 1fr; max-width: 460px; }
+
+  .spec-bento { grid-template-columns: 1fr 1fr; }
+  .spec-tile--sensors { grid-row: auto; }
+  .spec-table { grid-column: 1 / -1; }
+}
+
+@media (max-width: 560px) {
+  .spec-bento { grid-template-columns: 1fr; }
+  .spec-row { flex-direction: column; gap: 0.2rem; }
+  .spec-row-val { text-align: left; }
 }
 
 @media (max-width: 720px) {
