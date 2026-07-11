@@ -1105,7 +1105,7 @@ a { color: inherit; text-decoration: none; }
 
 /* Newsletter */
 .cta-newsletter {
-  padding: clamp(24px, 3vw, 36px);
+  padding: clamp(20px, 2.5vw, 28px);
   border-radius: var(--radius-lg);
   border: 1px solid var(--hairline);
   background: rgba(0, 0, 0, 0.2);
@@ -1125,19 +1125,21 @@ a { color: inherit; text-decoration: none; }
 
 .cta-form {
   display: flex;
-  gap: 0.75rem;
+  align-items: center;
+  gap: 0.6rem;
   flex-wrap: wrap;
 }
 .cta-input {
-  flex: 1 1 200px;
-  min-width: 0;
-  padding: 0.85rem 1.1rem;
+  flex: 0 1 220px;
+  width: 100%;
+  max-width: 240px;
+  padding: 0.6rem 0.95rem;
   border-radius: 999px;
   border: 1px solid var(--hairline);
   background: rgba(255, 255, 255, 0.04);
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 .cta-input::placeholder { color: var(--text-muted); }
@@ -1224,14 +1226,16 @@ a { color: inherit; text-decoration: none; }
   .test-grid { grid-template-columns: 1fr; max-width: 520px; }
 
   .cta-grid { grid-template-columns: 1fr; }
-  .cta-form { flex-direction: column; }
-  .cta-form .btn { width: 100%; }
 }
 
 @media (max-width: 560px) {
   .spec-bento { grid-template-columns: 1fr; }
   .spec-row { flex-direction: column; gap: 0.2rem; }
   .spec-row-val { text-align: left; }
+
+  .cta-form { flex-direction: column; align-items: stretch; }
+  .cta-input { max-width: none; flex: 1 1 auto; }
+  .cta-form .btn { width: 100%; }
 }
 
 @media (max-width: 720px) {
