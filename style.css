@@ -1181,6 +1181,60 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  border-top: 1px solid var(--hairline);
+  padding: clamp(36px, 5vw, 56px) 0;
+  background: var(--bg-deep);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(24px, 4vw, 48px);
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  transition: color 0.3s var(--ease);
+}
+.footer-logo:hover { color: var(--text); }
+
+.footer-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 52ch;
+}
+.footer-copy,
+.footer-attrib {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+.footer-attrib a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-decoration-color: rgba(155, 161, 168, 0.35);
+  text-underline-offset: 3px;
+  transition: color 0.3s var(--ease), text-decoration-color 0.3s var(--ease);
+}
+.footer-attrib a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent-line);
+}
+
+/* ============================================================
    REVEAL (entrance)
    ============================================================ */
 .reveal {
@@ -1236,6 +1290,8 @@ a { color: inherit; text-decoration: none; }
   .cta-form { flex-direction: column; align-items: stretch; }
   .cta-input { max-width: none; flex: 1 1 auto; }
   .cta-form .btn { width: 100%; }
+
+  .footer-inner { flex-direction: column; }
 }
 
 @media (max-width: 720px) {
