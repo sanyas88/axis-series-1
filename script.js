@@ -73,6 +73,30 @@ if (!prefersReducedMotion && countEls.length) {
   });
 }
 
+/* Suptilan parallax brojčanika u Engineering sekciji */
+const engDial = document.querySelector(".eng-dial");
+if (engDial && !prefersReducedMotion) {
+  let ticking = false;
+  const updateParallax = () => {
+    const rect = engDial.getBoundingClientRect();
+    const viewCenter = window.innerHeight / 2;
+    const rel = (rect.top + rect.height / 2 - viewCenter) / window.innerHeight;
+    engDial.style.transform = `translateY(${(rel * -26).toFixed(1)}px)`;
+    ticking = false;
+  };
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+  updateParallax();
+}
+
 /* Hero model: ugasi auto-rotate čim korisnik krene da rotira */
 const heroModel = document.querySelector(".hero-model");
 if (heroModel) {
