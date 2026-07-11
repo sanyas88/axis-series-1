@@ -899,6 +899,12 @@ a { color: inherit; text-decoration: none; }
   border-top: 1px solid rgba(20, 23, 26, 0.14);
 }
 .sust-claim { position: relative; }
+.sust-claim-icon {
+  display: inline-flex;
+  color: var(--sust-accent);
+  margin-bottom: 1rem;
+}
+.sust-claim-icon svg { width: 26px; height: 26px; }
 .sust-claim + .sust-claim { padding-left: clamp(24px, 3vw, 40px); }
 .sust-claim + .sust-claim::before {
   content: "";
