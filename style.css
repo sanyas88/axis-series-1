@@ -621,6 +621,58 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ============================================================
+   ENGINEERING
+   ============================================================ */
+.engineering { border-top: 1px solid var(--hairline); }
+
+.eng-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+}
+
+.eng-copy .section-title { margin: 1rem 0 1.6rem; max-width: 16ch; }
+.eng-para {
+  color: var(--text-muted);
+  font-size: clamp(1rem, 1.3vw, 1.12rem);
+  max-width: 52ch;
+}
+.eng-para + .eng-para { margin-top: 1.1rem; }
+
+/* Blueprint "brojčanik" */
+.eng-visual {
+  display: grid;
+  place-items: center;
+}
+.eng-dial {
+  width: min(100%, 420px);
+  aspect-ratio: 1;
+  color: var(--accent);
+  filter: drop-shadow(0 0 40px rgba(79, 209, 232, 0.12));
+}
+.eng-dial-lines { stroke: rgba(255, 255, 255, 0.09); }
+.eng-dial-ticks {
+  stroke: rgba(79, 209, 232, 0.5);
+  stroke-dasharray: 1.5 11;
+  transform-origin: 200px 200px;
+  animation: dialSpin 60s linear infinite;
+}
+.eng-dial-arc {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-dasharray: 240 700;
+  transform-origin: 200px 200px;
+  animation: dialSpinRev 24s linear infinite;
+}
+.eng-dial-core {
+  fill: var(--accent);
+  filter: drop-shadow(0 0 10px var(--accent));
+}
+@keyframes dialSpin { to { transform: rotate(360deg); } }
+@keyframes dialSpinRev { to { transform: rotate(-360deg); } }
+
+/* ============================================================
    REVEAL (entrance)
    ============================================================ */
 .reveal {
@@ -649,6 +701,10 @@ a { color: inherit; text-decoration: none; }
   .spec-bento { grid-template-columns: 1fr 1fr; }
   .spec-tile--sensors { grid-row: auto; }
   .spec-table { grid-column: 1 / -1; }
+
+  .eng-grid { grid-template-columns: 1fr; }
+  .eng-visual { grid-row: 1; }
+  .eng-dial { width: min(72%, 340px); }
 }
 
 @media (max-width: 560px) {
