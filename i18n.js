@@ -104,9 +104,9 @@ const I18N = {
     "sust.lead":
       "Trajnost je naša ekološka politika. Manje delova znači manje razloga da nešto pukne — a sat koji duže radi je sat koji ne završava u fioci ni na otpadu.",
     "sust.c1.k": "6 dana baterije",
-    "sust.c1.v": "Rjeđe punjenje i manje ciklusa baterije tokom života uređaja.",
-    "sust.c2.k": "Mjesečni firmware",
-    "sust.c2.v": "Softver produžava vijek sata umjesto da te gura na zamjenu.",
+    "sust.c1.v": "Ređe punjenje i manje ciklusa baterije tokom života uređaja.",
+    "sust.c2.k": "Mesečni firmware",
+    "sust.c2.v": "Softver produžava vek sata umesto da te gura na zamenu.",
     "sust.c3.k": "Manje delova",
     "sust.c3.v": "Manje tačaka kvara — jednostavnija konstrukcija koja duže traje.",
 
